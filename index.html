@@ -1,322 +1,329 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-    <title>Background Image</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasan Umut Duyar - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNGMEYwRjAiPjwvcmVjdD4KPC9zdmc+');
+            background-repeat: repeat;
+        }
+        .skill-bar {
+            transition: width 1s ease-in-out;
+        }
+    </style>
 </head>
-<body Background="./assets/Bgimage.jpg">
-    <nav id="desktop-nav">
-        <div class="logo">Hasan Umut Duyar</div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <nav id="hamburger-nav"> 
-        <div class="logo">Hasan Umut Duyar</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
-        </div>
-    </nav>
-   <section id="profile">
-    <div class="section__pic-container">
-        <img src="./assets/profile.jpg" alt="Hasan Umut Duyar profile picture">
-    </div>
-    <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Hasan Umut</h1>
-        <p class="section__text__p2">Developer</p>
-        <div class="btn-container">
-            <button
-                class="btn btn-color-2"
-                onclick="window.open('./assets/HasanUmutDuyarCv.pdf')"
-            >Download CV
-        </button>
+  
+<style>
 
-        <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-        </button>
+    /* İkonların düzeni */
+    .social-icons {
+        display: flex;
+        gap: 20px;
+    }
+
+    .social-icons a img {
+        width: 64px;  /* İkon boyutu (64px olarak ayarlandı, isteğe bağlı olarak değiştirebilirsin) */
+        height: 64px;
+        transition: transform 0.3s; /* Hover efekti için geçiş animasyonu */
+    }
+
+    /* Hover efekti (ikonun büyümesi) */
+    .social-icons a img:hover {
+        transform: scale(1.1);
+    }
+</style>
+
+<body class="min-h-screen bg-gray-100 text-gray-800">
+    <header class="w-full bg-white bg-opacity-90 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-gray-800">Hasan Umut Duyar</h1>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-4">
+                    <li><a href="#about" class="hover:text-gray-600 transition-colors">About</a></li>
+                    <li><a href="#skills" class="hover:text-gray-600 transition-colors">Skills</a></li>
+                    <li><a href="#projects" class="hover:text-gray-600 transition-colors">Projects</a></li>
+                </ul>
+            </nav>
+            <button id="menuToggle" class="md:hidden text-gray-800" onclick="toggleMenu()">
+                <i id="menuIcon" data-lucide="menu"></i>
+            </button>
         </div>
-        <div id="socials-container">
-            <img
-            src="./assets/LinkedinIcon.png" alt="My Linkedin profile"
-            class="icon"
-            onclick="location.href='https://linkedin.com/in/hasanumut-duyar/'"
-            />
-            <img
-            src="./assets/githubIcon.png" alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/hasanumutduyar'"
-            />
-        </div>
+    </header>
+    
+    <div id="mobileMenu" class="hidden md:hidden bg-white bg-opacity-90 p-4">
+        <ul class="flex flex-col space-y-2">
+            <li><a href="#about" class="block py-2 px-4 hover:bg-gray-200 rounded transition-colors" onclick="toggleMenu()">About</a></li>
+            <li><a href="#skills" class="block py-2 px-4 hover:bg-gray-200 rounded transition-colors" onclick="toggleMenu()">Skills</a></li>
+            <li><a href="#projects" class="block py-2 px-4 hover:bg-gray-200 rounded transition-colors" onclick="toggleMenu()">Projects</a></li>
+        </ul>
     </div>
-   </section> 
-   <section id="about">
-   <p class="section__text__p1">Get To Know More</p>
-   <h1 class="title">About Me</h1>
-   <div class="section-container">
-       <div class="section__pic-container">
-         <img
-            src="./assets/aboutpic.jpg" 
-            alt="Profile picture" 
-            class="about-pic"
-            />
-        </div>
-        <div class="about-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <img 
-                    src="./assets/medalicon.png" 
-                    alt="Experience icon" 
-                    class="icon"
-                    />
-                    <h3>Experience</h3>
-                    <p> 2+ years <br />Fronted Development</p>
+    
+    <!-- Add this script at the end of the body tag -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            
+            if (menu.classList.contains('hidden')) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+            } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        }
+    
+        lucide.createIcons();
+    </script>
+
+    <main class="container mx-auto px-4 py-12">
+        <section id="hero" class="text-center mb-10">
+            <img src="./assets/meprofile.png" alt="Hasan Umut Duyar" class="rounded-full mx-auto mb-6 border-4 border-gray-300" width="150" height="150">
+            <p class="text-xl mb-3 text-gray-600">Hello, I'm Hasan Umut</p>
+            <h2 class="text-4xl font-bold mb-4 text-gray-800">Backend Developer</h2>
+            <div class="flex justify-center space-x-4 mb-5">
+                <a href="./assets/HasanUmutDuyarCv.pdf" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950">
+                 Download CV
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200 hover:text-gray-900">
+                    Contact Me
+                </a>
+            </div>
+            <div class="social-icons inline-flex items-center justify-center mb-5">
+                <!-- GitHub Icon -->
+                <a href="https://github.com/hasanumutduyar" target="_blank">
+                    <img src="./assets/githubIcon.png" alt="GitHub Icon">
+                </a>
+        
+                <!-- LinkedIn Icon -->
+                <a href="https://www.linkedin.com/in/hasanumut-duyar/" target="_blank">
+                    <img src="./assets/LinkedinIcon.png" alt="LinkedIn Icon">
+                </a>
+            </div>
+        </section>
+
+        <section id="about" class="mb-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">About Me</h2>
+            <p class="text-lg mb-4 text-gray-600">
+                I am a Computer Programming graduate with over 2 years of experience in IT, specializing in backend development using .NET and frontend development with React. My expertise includes system maintenance, technical support, and network management.
+            </p>
+            <p class="text-lg mb-8 text-gray-600">
+                I have worked on various projects, including hardware and software integration using platforms like Arduino. My internships as an IT technician allowed me to enhance my skills in diagnosing and resolving technical issues while ensuring IT infrastructure continuity.
+            </p>
+            <div class="relative">
+                <div class="mb-8 pl-8 relative">
+                    <div class="absolute left-0 w-4 h-4 bg-gray-800 rounded-full mt-1.5"></div>
+                    <h3 class="text-xl font-bold text-gray-800">2018-2024: Freelancer</h3>
+                    <p class="text-gray-600">I am looking for a job and in the meantime I am taking various courses to improve myself.</p>
                 </div>
-                <div class="details-container">
-                    <img 
-                    src="./assets/educationicon.png" 
-                    alt="Education icon" 
-                    class="icon"
-                    />
-                    <h3>Education</h3>
-                    <p> Computer Programming <br />Ege University</p>
+                <div class="mb-8 pl-8 relative">
+                    <div class="absolute left-0 w-4 h-4 bg-gray-800 rounded-full mt-1.5"></div>
+                    <h3 class="text-xl font-bold text-gray-800">2018: Graduated</h3>
+                    <p class="text-gray-600">Completed my Computer Programming degree.</p>
+                </div>
+                <div class="mb-8 pl-8 relative">
+                    <div class="absolute left-0 w-4 h-4 bg-gray-800 rounded-full mt-1.5"></div>
+                    <h3 class="text-xl font-bold text-gray-800">2017: First Developer Role</h3>
+                    <p class="text-gray-600"> Using the Arduino platform, I planned the integration of hardware and software. I gained in-depth
+                        knowledge of troubleshooting and optimization.</p>
+                </div>
+                <div class="mb-8 pl-8 relative">
+                    <div class="absolute left-0 w-4 h-4 bg-gray-800 rounded-full mt-1.5"></div>
+                    <h3 class="text-xl font-bold text-gray-800">2015: Started Computer Programming</h3>
+                    <p class="text-gray-600"> I improved my ability to diagnose and resolve issues related to computer hardware and
+                        software.</p>
                 </div>
             </div>
-            <div class="text-container">
-                <p> I am a Computer Programming graduate with extensive experience in IT, specializing in system maintenance, technical support, and network management. I have worked on various projects, including hardware and software integration using platforms like Arduino. My internships as an IT technician allowed me to enhance my skills in diagnosing and resolving technical issues while ensuring IT infrastructure continuity. I take a customer-focused approach, leveraging my problem-solving abilities and effective communication to provide tailored solutions. I am dedicated to staying current with industry trends and continuously improving my technical expertise.</p>
-            </div>
-    </div>
-   </div>
-   <img 
-        src="./assets/arrowdownicon.png" 
-        alt="Arrow icon" 
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-     /> 
-   </section>
-   <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Fronted Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>HTML</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>CSS</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>ASP.NET</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
+        </section>
+
+        <section id="skills" class="mb-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">C#</span>
+                        <span class="text-sm font-medium text-gray-500">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 80%"></div>
                     </div>
                 </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Backend Development</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>C#</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>PHP</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>Phyton</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>SQL</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">ASP.NET</span>
+                        <span class="text-sm font-medium text-gray-500">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 80%"></div>
                     </div>
                 </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Other</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>Ms Visual Studio</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>Ms Office</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmarkicon.png" alt="Experience icon" class="icon"/>
-                            <div>
-                                <h3>Eclipse IDE</h3>
-                                <p>Beginner</p>
-                            </div>
-                        </article>
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">SQL</span>
+                        <span class="text-sm font-medium text-gray-500">60%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">React</span>
+                        <span class="text-sm font-medium text-gray-500">60%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">JavaScript</span>
+                        <span class="text-sm font-medium text-gray-500">60%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-base font-medium text-gray-700">Python</span>
+                        <span class="text-sm font-medium text-gray-500">40%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-gradient-to-r from-gray-600 to-gray-800 h-2.5 rounded-full skill-bar" style="width: 40%"></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <img 
-        src="./assets/arrowdownicon.png" 
-        alt="Arrow icon" 
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-     /> 
-   </section>
-   <section id="projects">
-    <p class="section__text__p1">Browse My Recent</p>
-    <h1 class="title">Projects</h1>
-    <div class="experience-details-container">
-        <div class="about-containers">
-        <div class="details-container color-container">
-            <div class="article-container">
-                <img 
-                src="./assets/A Giriş.png" 
-                alt="Project 1"
-                class="project-img"
-                />
+        </section>
+
+        <section id="projects" class="mb-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 text-center">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group">
+                    <div class="absolute inset-0.5 bg-gradient-to-r from-gray-500 to-gray-700 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-white ring-1 ring-gray-400 rounded-lg p-6 h-full flex flex-col">
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <img src="/placeholder.svg?height=300&width=400" alt="E-commerce Platform" class="object-cover w-full h-48 transition-transform duration-500 ease-in-out transform group-hover:scale-110">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">A full-stack e-commerce solution using .NET Core and React</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">.NET Core</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">SQL Server</span>
+                        </div>
+                        <a href="https://github.com" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950">
+                            <i data-lucide="github" class="mr-2 h-4 w-4"></i> View Code
+                        </a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute inset-0.5 bg-gradient-to-r from-gray-500 to-gray-700 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-white ring-1 ring-gray-400 rounded-lg p-6 h-full flex flex-col">
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <img src="/placeholder.svg?height=300&width=400" alt="E-commerce Platform" class="object-cover w-full h-48 transition-transform duration-500 ease-in-out transform group-hover:scale-110">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">A full-stack e-commerce solution using .NET Core and React</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">.NET Core</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">SQL Server</span>
+                        </div>
+                        <a href="https://github.com" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950">
+                            <i data-lucide="github" class="mr-2 h-4 w-4"></i> View Code
+                        </a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute inset-0.5 bg-gradient-to-r from-gray-500 to-gray-700 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-white ring-1 ring-gray-400 rounded-lg p-6 h-full flex flex-col">
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <img src="/placeholder.svg?height=300&width=400" alt="E-commerce Platform" class="object-cover w-full h-48 transition-transform duration-500 ease-in-out transform group-hover:scale-110">
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">A full-stack e-commerce solution using .NET Core and React</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">.NET Core</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">React</span>
+                            <span class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-sm">SQL Server</span>
+                        </div>
+                        <a href="https://github.com" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-800 hover:to-gray-950">
+                            <i data-lucide="github" class="mr-2 h-4 w-4"></i> View Code
+                        </a>
+                    </div>
+                </div>
+                <!-- Repeat similar structure for other projects -->
             </div>
-            <h2 class="experience-sub-title project-title">Project One</h2>
-            <div class="btn-container">
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    View
-                </button>
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    Live Demo
-                </button>
+        </section>
+    </main>
+
+    <footer id="contact" class="w-full bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Contact Me</h2>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-6">
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your Name" class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                                <input type="email" id="email" name="email" placeholder="your@email.com" class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Your message here..." class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"></textarea>
+                            </div>
+                            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-700 hover:to-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                <i data-lucide="send" class="mr-2 h-4 w-4"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Hasan Umut Duyar</h3>
+                    <p class="mb-4">Backend Developer | hasannduyarrr@gmail.com</p>
+                    <h4 class="text-lg font-semibold mb-2">Quick Links</h4>
+                    <ul class="space-y-2 mb-6">
+                        <li><a href="#about" class="hover:text-gray-300 transition-colors">About</a></li>
+                        <li><a href="#skills" class="hover:text-gray-300 transition-colors">Skills</a></li>
+                        <li><a href="#projects" class="hover:text-gray-300 transition-colors">Projects</a></li>
+                    </ul>
+                    <div class="flex space-x-4">
+                        <a href="mailto:hasanumutduyar@gmail.com" class="text-white hover:text-gray-300 transition-colors">
+                            <i data-lucide="mail" class="h-6 w-6"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/hasanumut-duyar/" class="text-white hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="linkedin" class="h-6 w-6"></i>
+                        </a>
+                        <a href="https://github.com/hasanumutduyar" class="text-white hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                            <i data-lucide="github" class="h-6 w-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>&copy; 2024 Hasan Umut Duyar. All Rights Reserved.</p>
             </div>
         </div>
-        <div class="details-container color-container">
-            <div class="article-container">
-                <img 
-                src="./assets/A Giriş.png" 
-                alt="Project 2"
-                class="project-img"
-                />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Two</h2>
-            <div class="btn-container">
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    View
-                </button>
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    Live Demo
-                </button>
-            </div>
-        </div>
-        <div class="details-container color-container">
-            <div class="article-container">
-                <img 
-                src="./assets/A Giriş.png" 
-                alt="Project 3"
-                class="project-img"
-                />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Three</h2>
-            <div class="btn-container">
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    View
-                </button>
-                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com'">
-                    Live Demo
-                </button>
-            </div>
-        </div>
-    </div>
-    </div>
-    <img 
-        src="./assets/arrowdownicon.png" 
-        alt="Arrow icon" 
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-     />
-   </section>
-   <section id="contact">
-    <p class="section__text__p1">Get in Touch</p>
-    <h1 class="title">Contact Me</h1>
-    <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-            <img 
-            src="./assets/mailicon.png" 
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-            />
-            <p><a href="mailto:hasannduyarrr@gmail.com">hasannduyarrr@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-            <img 
-            src="./assets/LinkedinIcon.png" 
-            alt="Linkedin icon"
-            class="icon contact-icon"
-            />
-            <p><a href="https://linkedin.com/in/hasanumut-duyar/">LinkedIn</a></p>
-        </div>
-    </div>
-   </section>
-   <footer>
-    <nav>
-        <div class="nav-links-container">
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <p>Copyright &#169; 2024 Hasan Umut Duyar. All Right Reserved.</p>
-   </footer>
-    <script src="script.js"></script>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        lucide.createIcons();
+    </script>
 </body>
 </html>
